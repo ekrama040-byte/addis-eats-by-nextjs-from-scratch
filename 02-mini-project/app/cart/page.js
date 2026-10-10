@@ -1,8 +1,17 @@
+"use client";
+import { useRouter } from 'next/navigation';
+
 export default function CartPage() {
+  const router = useRouter();
   return (
-    <main style={{ padding: '2rem' }}>
-      <h1>Your Cart</h1>
-      <p>Review items added to your order.</p>
+    <main>
+      <h1>🛒 Project 02: Cart</h1>
+      <button 
+        onClick={() => router.push('/checkout')}
+        style={{ padding: '0.5rem 1rem', background: '#0070f3', color: 'white', border: 'none', cursor: 'pointer' }}
+      >
+        Go to Checkout
+      </button>
     </main>
   );
 }

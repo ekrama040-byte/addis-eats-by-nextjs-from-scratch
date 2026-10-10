@@ -1,8 +1,12 @@
+import CategoryBar from "./CategoryBar";
+import DishList from "./DishList";
+
 export default function MenuPage() {
   return (
-    <main style={{ padding: '2rem' }}>
-      <h1>Menu</h1>
-      <p>Explore our delicious dishes here.</p>
+    <main>
+      <h1>📋 Project 02: Menu</h1>
+      <CategoryBar />
+      <DishList />
     </main>
   );
 }
