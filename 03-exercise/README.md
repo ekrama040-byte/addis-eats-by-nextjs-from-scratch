@@ -1,4 +1,4 @@
-# Bundle Size Optimization Metrics: Project 04
+# Bundle Size Optimization Metrics: Project 03
 
 ### 📊 Performance Analytics Matrix
 *   **First Load JS for `/menu` (Before Optimization):** ~85 kB  
