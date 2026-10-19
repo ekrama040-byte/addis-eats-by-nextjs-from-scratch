@@ -1,0 +1,1 @@
+export function fetcher<T = unknown>(url: string): Promise<T>;
