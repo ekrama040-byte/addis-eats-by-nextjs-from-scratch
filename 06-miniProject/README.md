@@ -1,15 +1,31 @@
-# 🗺️ Addis Eats API Engine & Server Mutation Mapping
+Live data and Network tab verification
 
-This project architecture implements server-side JSON endpoint delivery combined with optimized Next.js Server Actions RPC mechanics.
+Order status
 
-## 📡 REST API Endpoint Registry
+Open the browser DevTools Network tab, filter by Fetch/XHR, and reload the home page. The order appears on the initial render using server-provided fallback data. A request to "/api/orders/AE-1001" then appears and repeats approximately every five seconds while the page remains open.
 
-| Route Path | HTTP Method | Expected Input Payload | Success Code | Error Code(s) | Description |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `/api/dishes` | **`GET`** | None | `200 OK` | None | Returns the full restaurant food array as raw JSON. |
-| `/api/dishes/[id]` | **`GET`** | URL URL Path ID Parameter | `200 OK` | `404 Not Found` | Returns a single dish object or structured error if unknown. |
-| `/api/orders` | **`POST`** | JSON object (`{name, phone, address}`) | `201 Created` | `422 Unprocessable` / `400 Bad Request` | Processes order requests and validates against shared schemas. |
+The order query also revalidates when the browser window regains focus.
 
-## ⚡ Server Actions Registry
-*   **`placeOrderAction`**: Bound directly to the checkout `<form>` token via the client-side `useActionState` controller hooks.
-*   **`cancelOrderAction`**: Evaluates server environment configs (`process.env.JWT_SECRET`) and forces deep validation constraints between active identity claims and database rows to secure operations.
+Debounced menu search
+
+Type a dish name into the search field while watching the Network tab. The application waits approximately 400 milliseconds after typing stops before updating the debounced search query.
+
+The search query does not run when the debounced term is empty because its SWR key is "null". When searching, the previous results remain visible while the new response is loading, thanks to "keepPreviousData".
+
+Pagination and URLs
+
+Use the Previous and Next buttons. The page number is reflected in the URL, and the menu API request includes the corresponding "page" parameter. Copy the URL into a new tab to check that the selected page and search term can be restored.
+
+Test commands
+
+Run the development server:
+
+npm run dev
+
+Run the CSV tests if the project still includes them:
+
+node --experimental-default-type=module --test src/lib/csv.test.mjs
+
+Run a production build before submitting:
+
+npm run build
